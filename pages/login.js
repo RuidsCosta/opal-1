@@ -3,7 +3,7 @@ import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Lin
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import Footer from '../components/Footer';
-import axios from "axios";
+import fetch from 'isomorphic-unfetch';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -40,33 +40,31 @@ const LogIn = () => {
 
 
   const login = (email, password) => {
-    const api_endpoint = "https://safira20.herokuapp.com/api/auth/sign_in/";
-    
-    axios.post(api_endpoint, {
-      email: email,
-      password: password
+    const api_endpoint = process.env.REACT_APP_ENDPOINT + process.env.REACT_APP_API_AUTH_SIGN_IN;
+
+    fetch(api_endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
     })
-    .then(res => handleLoginResponse(res))
-    .catch(res => handleErrorResponse(res));
+    .then((res) => res.json())
+    .then((res) => {
+        if(res.jwt){
+          setErrorMsg('');
+          localStorage.jwt = res.jwt;
+          window.location.pathname = "/";
+        }
+        else if (res.error){ 
+          setErrorMsg('Invalid email or password')
+        }
+    });
   } 
   
-  const handleLoginResponse = (res) => {
-    if (res.data.hasOwnProperty("jwt")) {
-      setErrorMsg('');
-      localStorage.jwt = res.data.jwt;
-      window.location.pathname = "/";
-    } else {
-      setErrorMsg('Login error');
-    }
-  }
-  
-  const handleErrorResponse = (res) => {
-    if (res.response) {
-      setErrorMsg('Invalid email or password');
-    } else {
-      setErrorMsg('Login error');
-    }
-  }
 
   return (
     <Container component="main" maxWidth="xs">
