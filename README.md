@@ -48,6 +48,18 @@ Runs the built app in production mode.
 npm start
 ```
 
+### Usage
+
+#### Sign-up
+
+The sign-up page is intended to be accessed exclusively by users who have received 
+a custom sign-up link in their emails.
+
+For development purposes, you can craft a sign-up link by following the template:
+
+        YOUR_DOMAIN/signup?id=SAFIRA_UUID
+
+
 ## Contributing
 
 Please read [CONTRIBUTING](CONTRIBUTING.md) and
