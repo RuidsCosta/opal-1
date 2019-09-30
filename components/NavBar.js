@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Link from '../src/Link';
+import Link from './NextMUILink';
 
 const StyledTypography = styled(Typography)({
   color: 'black',

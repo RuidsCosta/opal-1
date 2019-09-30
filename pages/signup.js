@@ -4,7 +4,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import fetch from 'isomorphic-unfetch';
 import { useRouter } from 'next/router';
-import Link from '../src/Link';
+import Link from '../components/NextMUILink';
 import Layout from '../components/Layout';
 
 const useStyles = makeStyles(theme => ({
