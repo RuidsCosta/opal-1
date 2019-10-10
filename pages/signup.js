@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import Link from '../components/NextMUILink';
 import Layout from '../components/Layout';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
@@ -32,29 +32,29 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-SignUp.getInitialProps = ({query}) => {
-  return {query}
-}
+SignUp.getInitialProps = ({ query }) => {
+  return { query };
+};
 
 export default function SignUp() {
   const classes = useStyles();
-  
-  const router = useRouter()
-  let UUID = router.query.id;
-  //console.log(UUID);
+
+  const router = useRouter();
+  const UUID = router.query.id;
+  // console.log(UUID);
 
   const [errorMsg, setErrorMsg] = React.useState('');
 
   const useSignUpForm = (callback) => {
     const [attendee, setAttendee] = React.useState({
       id: UUID,
-      nickname: ''
+      nickname: '',
     });
     const [inputs, setInputs] = React.useState({
       email: '',
       password: '',
       password_confirmation: '',
-      attendee: ''
+      attendee: '',
     });
     const handleSubmit = (event) => {
       if (event) {
@@ -64,52 +64,55 @@ export default function SignUp() {
     }
     const handleInputChange = (event) => {
       event.persist();
-      setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}));
+      setInputs((inputs) => ({ ...inputs, [event.target.name]: event.target.value }));
     }
     const handleNicknameChange = (event) => {
       event.persist();
-      setAttendee(attendee => ({...attendee, [event.target.name]: event.target.value}));
+      setAttendee((attendee) => ({ ...attendee, [event.target.name]: event.target.value }));
     }
     return {
       handleSubmit,
       handleInputChange,
       handleNicknameChange,
       inputs,
-      attendee
+      attendee,
     };
-  }
+  };
 
 
   const signup = () => {
 
-    //TODO: add warning page if there is already an active session
-    const signupData = {user: {...inputs, attendee: attendee}};
-    //console.log(signupData);
+    // TODO: add warning page if there is already an active session
+    const signupData = { user: { ...inputs, attendee: attendee } };
+    // console.log(signupData);
     const apiEndpoint = process.env.REACT_APP_ENDPOINT + process.env.REACT_APP_API_AUTH_SIGN_UP;
     fetch(apiEndpoint, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(signupData)
+      body: JSON.stringify(signupData),
     })
     .then((res) => res.json())
     .then((res) => {
-        if(res.jwt){
+        if (res.jwt) {
           setErrorMsg('');
           localStorage.jwt = res.jwt;
-          window.location.pathname = "/";
-        }
-        else if (res.error){ 
+          window.location.pathname = '/';
+        } else if (res.error) {
           setErrorMsg(res.error);
-        }
-        else if (res.errors.detail){ 
+        } else if (res.errors.detail) {
           setErrorMsg(res.errors.detail);
         }
     });
-  }
+  };
 
-  const {inputs, attendee, handleInputChange, handleNicknameChange, handleSubmit} = useSignUpForm(signup);
+  const { inputs,
+          attendee,
+          handleInputChange,
+          handleNicknameChange,
+          handleSubmit,
+        } = useSignUpForm(signup);
 
   return (
     <Layout>
