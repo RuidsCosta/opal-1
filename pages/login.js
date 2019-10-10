@@ -1,9 +1,18 @@
-import React,  {useState} from 'react';
-import { Avatar, Button, CssBaseline, Box, TextField, Typography, Container }  from '@material-ui/core';
+import React, { useState } from 'react';
+import {
+ Avatar,
+ Button,
+ CssBaseline,
+ Box,
+ TextField,
+ Typography,
+ Container,
+} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { styled } from '@material-ui/core/styles';
-import Footer from '../components/Footer';
 import fetch from 'isomorphic-unfetch';
+import Router from 'next/router';
+import Footer from '../components/Footer';
 import theme from '../static/theme';
 
 
@@ -22,7 +31,7 @@ const StyledAvatar = styled(Avatar)({
 const StyledButton = styled(Button)({
   margin: theme.spacing(3, 0, 2),
 });
- 
+
 
 const LogIn = () => {
   const [email, setEmail] = useState('');
@@ -30,32 +39,31 @@ const LogIn = () => {
   const [errorMsg, setErrorMsg] = useState('');
 
 
-  const login = (email, password) => {
-    const api_endpoint = process.env.ENDPOINT + process.env.API_AUTH_SIGN_IN;
+  const login = (userEmail, userPassword) => {
+    const apiEndpoint = process.env.ENDPOINT + process.env.API_AUTH_SIGN_IN;
 
-    fetch(api_endpoint, {
+    fetch(apiEndpoint, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
-      }, 
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
-        email: email,
-        password: password
-      })
+        email: userEmail,
+        password: userPassword,
+      }),
     })
-    .then(res => res.json())
-    .then(res => {
-        if(res.jwt){
+    .then((res) => res.json())
+    .then((res) => {
+        if (res.jwt) {
           setErrorMsg('');
           localStorage.jwt = res.jwt;
-          window.location.pathname = "/";
-        }
-        else if (res.error){ 
-          setErrorMsg('Invalid email or password')
+          Router.push('/');
+        } else if (res.error) {
+          setErrorMsg('Invalid email or password');
         }
     });
-  } 
-  
+  };
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -77,7 +85,7 @@ const LogIn = () => {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={()=>setEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
           />
           <TextField
             variant="outlined"
@@ -89,11 +97,11 @@ const LogIn = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={()=>setPassword(event.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
           />
           <Typography component="h1" variant="subtitle2" color="error">
             {errorMsg}
-          </Typography>  
+          </Typography>
           <StyledButton
             type="submit"
             fullWidth
@@ -109,7 +117,7 @@ const LogIn = () => {
       </Box>
     </Container>
   );
-}
+};
 
 
 export default LogIn;
