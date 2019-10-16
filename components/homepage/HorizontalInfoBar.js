@@ -3,10 +3,8 @@ import { Typography, Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled(Grid)({
-    paddingLeft: '2em',
-    paddingRight: '2em',
-    paddingTop: '1em',
-    paddingBottom: '1em',
+		paddingLeft: '1em',
+		paddingRight: '1em',
 });
 
 const TitleBox = styled(Grid)({
@@ -16,7 +14,7 @@ const TitleBox = styled(Grid)({
 });
 
 const BodyBox = styled(Grid)({
-    textAlign: 'left',
+    textAlign: 'justify',
 });
 
 const Bold = styled(Typography)({
@@ -26,13 +24,13 @@ const Bold = styled(Typography)({
 function HorizontalInfoBar(props) {
 
     return (
-        <Wrapper container direction="row" justify="center" alignItems="flex-start" >
-            <TitleBox item sm="12" md="3">
-                <Bold variant="h5">
+        <Wrapper container direction="column" justify="center" alignItems="center" >
+            <TitleBox item sm="12"> 
+                <Bold variant="h3">
                     {props.title}
                 </Bold>
             </TitleBox>
-            <BodyBox item sm="12" md="9">
+            <BodyBox item sm="12"> 
                 {props.body.map((line, i) =>
                     <Typography key={i} variant="body1">
                         {line}
