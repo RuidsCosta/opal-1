@@ -1,5 +1,8 @@
+import React from 'react';
 import { styled } from '@material-ui/core/styles';
-import { Typography, Grid, Avatar, Box } from '@material-ui/core';
+import {
+ Typography, Grid, Avatar, Box,
+} from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled(Box)({
@@ -31,8 +34,8 @@ const TextBox = styled(Box)({
 });
 
 const Bold = styled(Typography)({
-    fontWeight: 'bold'
-})
+    fontWeight: 'bold',
+});
 
 const FeaturedImage = ({ src, title, subtitle }) => (
     <Grid item>
@@ -54,17 +57,23 @@ const StyledFeaturedImage = styled(FeaturedImage)({
 });
 
 function FeaturedImages(props) {
+    const { title, featured } = props;
     return (
             <Wrapper bgcolor="secondary.main">
                 <TitleBox xs="12">
                     <Bold variant="h5">
-                        {props.title}
+                        {title}
                     </Bold>
                 </TitleBox>
                 <ImageBox container direction="row" justify="center" alignItems="center" spacing={4}>
-                    {props.featured.map((data, i) =>
-                        <StyledFeaturedImage key={i} src={data.src} title={data.title} subtitle={data.subtitle} />
-                    )}
+                    {featured.map((data) => (
+                        <StyledFeaturedImage
+                            key={title}
+                            src={data.src}
+                            title={data.title}
+                            subtitle={data.subtitle}
+                        />
+                    ))}
                 </ImageBox>
             </Wrapper>
     );
@@ -77,12 +86,12 @@ FeaturedImages.propTypes = {
         title: PropTypes.string.isRequired,
         subtitle: PropTypes.string.isRequired,
     })).isRequired,
-}
+};
 
 FeaturedImage.propTypes = {
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
-}
+};
 
 export default FeaturedImages;

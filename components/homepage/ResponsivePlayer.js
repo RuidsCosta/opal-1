@@ -1,8 +1,8 @@
+import React from 'react';
 import { styled } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
-import home from '../../static/homepage.json';
 import HorizontalInfoBar from './HorizontalInfoBar';
 
 const Wrapper = styled(Grid)({
@@ -27,14 +27,14 @@ const CustomPlayer = styled(ReactPlayer)({
 });
 
 function ResponsivePlayer(props) {
-
+    const { url, title, body } = props;
     return (
-        <Wrapper container direction="row" justify="flex-start" alignItems="flex-start" >
+        <Wrapper container direction="row" justify="flex-start" alignItems="flex-start">
 					<GridItem item sm="12" md="8">
-						<CustomPlayer url={props.url} playing="true" /> 
+						<CustomPlayer url={url} playing="true" />
 					</GridItem>
-					<GridItem item sm="12" md="4"> 
-						<HorizontalInfoBar title={home.about.title} body={home.about.body} />
+					<GridItem item sm="12" md="4">
+						<HorizontalInfoBar title={title} body={body} />
 					</GridItem>
         </Wrapper>
     );
@@ -42,6 +42,8 @@ function ResponsivePlayer(props) {
 
 ResponsivePlayer.propTypes = {
     url: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.array.isRequired,
 };
 
 export default ResponsivePlayer;

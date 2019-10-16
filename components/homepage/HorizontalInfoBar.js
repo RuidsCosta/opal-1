@@ -1,3 +1,4 @@
+import React from 'react';
 import { styled } from '@material-ui/core/styles';
 import { Typography, Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
@@ -19,23 +20,23 @@ const BodyBox = styled(Grid)({
 
 const Bold = styled(Typography)({
     fontWeight: 'bold',
-})
+});
 
 function HorizontalInfoBar(props) {
-
+	const { title, body } = props;
     return (
-        <Wrapper container direction="column" justify="center" alignItems="center" >
+        <Wrapper container direction="column" justify="center" alignItems="center">
             <TitleBox item sm="12">
                 <Bold variant="h3">
-                    {props.title}
+                    {title}
                 </Bold>
             </TitleBox>
             <BodyBox item sm="12">
-                {props.body.map((line, i) =>
-                    <Typography key={i} variant="body1">
+                {body.map((line) => (
+                    <Typography key={line} variant="body1">
                         {line}
                     </Typography>
-                )}
+                ))}
             </BodyBox>
         </Wrapper>
     );

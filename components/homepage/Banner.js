@@ -1,5 +1,6 @@
+import React from 'react';
 import { styled } from '@material-ui/core/styles';
-import { Typography, Grid, Box } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled(Grid)({
@@ -38,14 +39,15 @@ const Image = styled(Grid)({
 });
 
 function Banner(props) {
+    const { src, title, subtitle } = props;
     return (
             <Wrapper container direction="column">
                 <Image item>
-                    <img width="100%" src={props.src}/>
+                    <img alt="banner" width="100%" src={src} />
                 </Image>
                 <Body container direction="column" justify="center" alignItems="flex-start">
-                    <Text src={props.title} variant="h2" />
-                    <Text src={props.subtitle} variant="h4" />
+                    <Text src={title} variant="h2" />
+                    <Text src={subtitle} variant="h4" />
                 </Body>
             </Wrapper>
     );
@@ -54,7 +56,12 @@ function Banner(props) {
 Banner.propTypes = {
     src: PropTypes.string.isRequired,
     title: PropTypes.string,
-    subtitle: PropTypes.string
-}
+    subtitle: PropTypes.string,
+};
+
+Text.propTypes = {
+    src: PropTypes.string.isRequired,
+    variant: PropTypes.string.isRequired,
+};
 
 export default Banner;
