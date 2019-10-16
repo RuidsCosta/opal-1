@@ -25,12 +25,12 @@ function HorizontalInfoBar(props) {
 
     return (
         <Wrapper container direction="column" justify="center" alignItems="center" >
-            <TitleBox item sm="12"> 
+            <TitleBox item sm="12">
                 <Bold variant="h3">
                     {props.title}
                 </Bold>
             </TitleBox>
-            <BodyBox item sm="12"> 
+            <BodyBox item sm="12">
                 {props.body.map((line, i) =>
                     <Typography key={i} variant="body1">
                         {line}
