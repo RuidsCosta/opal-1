@@ -34,6 +34,7 @@ const Image = styled(Avatar)({
 const TextBox = styled(Box)({
     textAlign: 'center',
     color: 'white',
+    maxWidth: 150,
 });
 
 const Bold = styled(Typography)({
@@ -68,7 +69,7 @@ function FeaturedImages(props) {
                         {title}
                     </Bold>
                 </TitleBox>
-                <ImageBox container direction="row" justify="center" alignItems="center" spacing={4}>
+                <ImageBox container direction="row" justify="center" alignItems="flex-start" spacing={4}>
                     {featured.map((data) => (
                         <StyledFeaturedImage
                             key={title}
