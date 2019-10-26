@@ -11,8 +11,8 @@ const Wrapper = styled(Grid)({
 
 const Body = styled(Grid)({
     position: 'absolute',
-    paddingTop: '15%',
-    paddingLeft: '5%',
+    paddingTop: '25vh',
+    paddingLeft: '5vw',
     maxWidth: '90%',
     overflow: 'hidden',
 });
@@ -34,17 +34,19 @@ const Text = ({ src, variant }) => (
     </Grid>
 );
 
-const Image = styled(Grid)({
-    maxHeight: '100vh',
-});
+const Image = styled(Box)(({ src }) => ({
+    height: '100vh',
+    width: '100vw',
+    backgroundImage: `url(${src})`,
+    backgroundPositionX: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+}));
 
-function Banner(props) {
-    const { src, title, subtitle } = props;
+function Banner({ src, title, subtitle }) {
     return (
             <Wrapper container direction="column">
-                <Image item>
-                    <img alt="banner" width="100%" src={src} />
-                </Image>
+                <Image src={src} />
                 <Body container direction="column" justify="center" alignItems="flex-start">
                     <Text src={title} variant="h2" />
                     <Text src={subtitle} variant="h4" />
@@ -60,8 +62,8 @@ Banner.propTypes = {
 };
 
 Text.propTypes = {
-    src: PropTypes.string.isRequired,
-    variant: PropTypes.string.isRequired,
+    src: PropTypes.string,
+    variant: PropTypes.string,
 };
 
 export default Banner;
