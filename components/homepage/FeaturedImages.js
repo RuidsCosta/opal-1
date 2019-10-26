@@ -1,13 +1,16 @@
 import React from 'react';
 import { styled } from '@material-ui/core/styles';
 import {
- Typography, Grid, Avatar, Box,
+    Typography,
+    Grid,
+    Avatar,
+    Box,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled(Box)({
-    paddingLeft: '2em',
-    paddingRight: '2em',
+    paddingLeft: '2%',
+    paddingRight: '2%',
     paddingTop: '1em',
     paddingBottom: '1em',
 });
@@ -60,7 +63,7 @@ function FeaturedImages(props) {
     const { title, featured } = props;
     return (
             <Wrapper bgcolor="secondary.main">
-                <TitleBox xs="12">
+                <TitleBox xs={12}>
                     <Bold variant="h5">
                         {title}
                     </Bold>

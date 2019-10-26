@@ -1,6 +1,10 @@
 import React from 'react';
 import { styled } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import {
+    Typography,
+    Grid,
+    Box,
+} from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled(Grid)({
