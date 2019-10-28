@@ -19,7 +19,7 @@ const Index = () => (
         <HorizontalInfoBar
             title={home.about.title}
             body={home.about.body}
-            url={home.about.url}
+            url={home.about.teaserURL}
         />
     </Layout>
   );
