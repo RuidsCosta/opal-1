@@ -59,6 +59,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
+      // eslint-disable-next-line react/jsx-props-no-spreading
       enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
     });
 
