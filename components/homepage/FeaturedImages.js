@@ -37,7 +37,7 @@ const Bold = styled(Typography)({
 
 const FeaturedImage = ({ src, title, subtitle }) => (
   <Grid item>
-    <Image src={src}/>
+    <Image src={src} />
     <TextBox>
       <Typography variant="h6">{title}</Typography>
       <Typography variant="subtitle2">{subtitle}</Typography>
