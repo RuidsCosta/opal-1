@@ -7,7 +7,7 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     indent: 0,
-    camelcase: ['error', {'properties': 'always'}],
+    camelcase: ['error', { properties: 'always' }],
     'no-tabs': 0,
     'eol-last': ['error', 'always'],
     'no-underscore-dangle': 0,
