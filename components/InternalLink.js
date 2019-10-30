@@ -36,6 +36,7 @@ function Link(props) {
   const router = useRouter();
 
   const className = clsx(classNameProps, {
+    // eslint-disable-next-line react/destructuring-assignment
     [activeClassName]: router.pathname === props.href && activeClassName,
   });
 

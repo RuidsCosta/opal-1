@@ -50,11 +50,11 @@ function BurgerButton() {
           <Spacer />
           <List>
             {global.navbar.pages.map((page) => (
-                <Link href={page.link}>
-              <ListItem button key={page.name}>
-                <Item primary={page.name} />
-              </ListItem>
-                </Link>
+              <Link href={page.link}>
+                <ListItem button key={page.name}>
+                  <Item primary={page.name} />
+                </ListItem>
+              </Link>
             ))}
           </List>
         </div>
