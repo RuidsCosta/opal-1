@@ -4,7 +4,6 @@ module.exports = {
     browser: true,
   },
   parser: 'babel-eslint',
-  plugins: ['prettier'],
   rules: {
     indent: 0,
     camelcase: ['error', { properties: 'always' }],
@@ -16,6 +15,5 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'react/forbid-prop-types': 0,
     'react/require-default-props': 0,
-    'prettier/prettier': 'error',
   },
 };
