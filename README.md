@@ -1,7 +1,10 @@
 [safira]: https://github.com/cesium/safira
 [nativemoon]: https://github.com/cesium/nativemoon
+[travis]: https://travis-ci.org/cesium/opal
 
 # Opal
+
+[![Travis](https://img.shields.io/travis/cesium/opal?style=flat-square)][travis]
 
 NextJS Web App for the Badge Platform for CeSIUM's Computer Engineering Week
 event.
